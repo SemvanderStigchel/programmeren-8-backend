@@ -1,0 +1,19 @@
+{
+  "name": "programmeren-8",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env --watch server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/openai": "^0.0.14",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.3",
+    "langchain": "^0.1.20"
+  }
+}
