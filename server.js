@@ -1,6 +1,7 @@
 import {ChatOpenAI} from "@langchain/openai"
 import express from "express"
 import bodyParser from "body-parser";
+import { HumanMessage, AIMessage, SystemMessage} from "langchain/schema";
 
 const model = new ChatOpenAI({
     temperature: 1,
@@ -77,13 +78,13 @@ app.post('/chat', async (req, res) => {
         return res.status(400).send({message: 'Please choose a character.'});
     }
     if (messages.length === 0) {
-        messages.push(["system", systemPrompt]);
+        messages.push(new SystemMessage(systemPrompt));
     }
-    messages.push(["human", prompt]);
+    messages.push(new HumanMessage(prompt));
     const query = await model.invoke(messages);
     res.json(query.content);
     messages.push(
-        ["ai", query.content]
+        new AIMessage(`${query.content}`)
     );
 });
 
